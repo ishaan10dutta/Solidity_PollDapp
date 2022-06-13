@@ -18,6 +18,7 @@ contract PollDapp{
     }
 
     function castVote(uint _optionIndex) public returns (string memory){
+        require(castedVotes[msg.sender] == 0, "Error: You can only vote once!");
         address _caller = msg.sender;
 
         uint existingVotes = voteCount[_optionIndex];
@@ -25,7 +26,7 @@ contract PollDapp{
 
         uint existingVotesCasted = castedVotes[_caller];
 
-        require(existingVotesCasted == 0, "Error: You can only vote once!");
+        
 
         uint updatedVotesCasted = existingVotesCasted + 1;
 
